@@ -1,0 +1,44 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dev-user
+rules:
+  - apiGroups: [""]
+    resources:
+      ["pods", "services", "deployments", "jobs", "cronjobs", "configmaps"]
+    verbs: ["get", "list", "create", "update", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: security-auditor
+rules:
+  - apiGroups: [""]
+    resources: ["*"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: devops
+rules:
+  - apiGroups: [""]
+    resources:
+      [
+        "pods",
+        "pods/exec",
+        "pods/log",
+        "pods/portforward",
+        "services",
+        "configmaps",
+        "secrets",
+        "nodes",
+        "namespaces",
+        "persistentvolumes",
+        "persistentvolumeclaims",
+        "events",
+        "deployments",
+        "jobs",
+        "cronjobs",
+      ]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
